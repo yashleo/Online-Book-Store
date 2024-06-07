@@ -149,3 +149,10 @@ document.addEventListener('DOMContentLoaded', () => {
     generateBooks(20);
     displayBooks();
 });
+
+// Create footer element
+const footer = document.createElement('footer');
+footer.innerHTML = '<a href="https://github.com/yashleo/Online-Book-Store">GitHub Repository</a>';
+
+// Append footer to the document body
+document.body.appendChild(footer);
