@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Book Store</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Online Book Store</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#books">Books</a></li>
+            <li><a href="#buy">Buy</a></li>
+            <li><a href="#cart">Cart</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="home">
+            <h2>Welcome to Our Book Store</h2>
+            <p>Discover a variety of books and enjoy reading!</p>
+        </section>
+        <section id="books">
+            <h2>All Books</h2>
+            <div id="books-container"></div>
+        </section>
+        <section id="buy">
+            <h2>Buy a Book</h2>
+            <form id="buy-form">
+                <label for="book-id">Book ID:</label>
+                <input type="text" id="book-id" required>
+                <button type="submit">Buy</button>
+            </form>
+        </section>
+        <section id="cart">
+            <h2>Cart</h2>
+            <div id="cart-container" class="horizontal-scroll"></div>
+        </section>
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Email: <a href="mailto:haamainyash@gmail.com">haamainyash@gmail.com</a></p>
+            <p>GitHub: <a href="https://github.com/yashleo" target="_blank">https://github.com/yashleo</a></p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Online Book Store. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
