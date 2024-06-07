@@ -145,5 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('book-id').value = '';
     });
 
-    // Set background image for #home section
-    const homeSection = document.getElementById('home');
+    // Generate initial set of books
+    generateBooks(20);
+    displayBooks();
+});
