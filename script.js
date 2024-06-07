@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const booksContainer = document.getElementById('books-container');
     const cartContainer = document.getElementById('cart-container');
     const buyForm = document.getElementById('buy-form');
+    const buyAllButton = document.getElementById('buy-all');
     const cart = [];
 
     function generateRandomId() {
@@ -47,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function displayBooks() {
         booksContainer.innerHTML = '';
-        books.forEach(book => {
+        books.slice(0, 5).forEach(book => {
             const bookItem = document.createElement('div');
             bookItem.classList.add('book-item');
             bookItem.innerHTML = `
@@ -72,34 +73,46 @@ document.addEventListener('DOMContentLoaded', () => {
             cart.push(book);
             displayCart();
         } else {
-            alert('Book not found!');
+            alert('Book not found or already in cart!');
         }
     };
 
     function displayCart() {
-    cartContainer.innerHTML = '';
-    cart.forEach(book => {
-        const cartItem = document.createElement('div');
-        cartItem.classList.add('cart-item');
-        cartItem.innerHTML = `
-            <img src="${book.image}" alt="${book.title}">
-            <h3>${book.title}</h3>
-            <p>${book.author}</p>
-            <p>ID: ${book.id}</p>
-            <button class="remove-button" onclick="removeFromCart(${book.id})">Remove from Cart</button>
-        `;
-        cartContainer.appendChild(cartItem);
-    });
-}
-
-window.removeFromCart = function (bookId) {
-    const bookIndex = cart.findIndex(book => book.id === bookId);
-    if (bookIndex !== -1) {
-        cart.splice(bookIndex, 1);
-        displayCart();
+        cartContainer.innerHTML = '';
+        cart.forEach(book => {
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
+            cartItem.innerHTML = `
+                <img src="${book.image}" alt="${book.title}">
+                <h3>${book.title}</h3>
+                <p>${book.author}</p>
+                <p>ID: ${book.id}</p>
+                <button class="remove-button" onclick="removeFromCart(${book.id})">Remove from Cart</button>
+            `;
+            cartContainer.appendChild(cartItem);
+        });
     }
-};
 
+    window.removeFromCart = function (bookId) {
+        const bookIndex = cart.findIndex(book => book.id === bookId);
+        if (bookIndex !== -1) {
+            cart.splice(bookIndex, 1);
+            displayCart();
+        }
+    };
+
+    buyAllButton.addEventListener('click', () => {
+        cart.forEach(book => {
+            const bookIndex = books.findIndex(b => b.id === book.id);
+            if (bookIndex !== -1) {
+                books.splice(bookIndex, 1);
+            }
+        });
+        cart.length = 0; // Clear the cart
+        alert('You have bought all the books in the cart!');
+        displayBooks();
+        displayCart();
+    });
 
     function replaceBook(oldBookId) {
         const oldBookIndex = books.findIndex(book => book.id === oldBookId);
@@ -132,7 +145,5 @@ window.removeFromCart = function (bookId) {
         document.getElementById('book-id').value = '';
     });
 
-    // Generate initial set of books
-    generateBooks(20);
-    displayBooks();
-});
+    // Set background image for #home section
+    const homeSection = document.getElementById('home');
